@@ -1,0 +1,56 @@
+form button:not([type]):after {
+    background: red;
+    color: white;
+    content:'Warning: this button doesn’t have a type attribute. Is it a submit, reset or just button?';
+}
+.button:not(button):after {
+    background: red;
+    color: white;
+    content:'Warning: You are making an element look like a button here. Is it really a button?';
+}
+button.disabled:not([disabled]):after, a.disabled[href]:after {
+    background: red;
+    color: white;
+    content:'Warning: It looks like you are styling an element to be disabled here. Make sure it is disabled properly.';
+}
+a:empty:not([aria-label]):not([aria-labelledby]):after, button:empty:not([aria-label]):not([aria-labelledby]):after, button:not([aria-label]):not([aria-labelledby]) img:only-child:not([alt]):after, a:not([aria-label]):not([aria-labelledby]) img:only-child:not([alt]):after {
+    background: red;
+    color: white;
+    content:'You are not providing enough information about what this button does. Please include some text within the button.';
+}
+section > section:first-child:after {
+    background: red;
+    color: #fff;
+    content:'Warning: it looks like you are using sections like divs. Sections should each have a heading';
+}
+#navigation:not([role="navigation"]):after {
+    background: red;
+    color: white;
+    content:'Warning: You appear to be linking to a principal navigation block. Make sure it has the navigation ARIA role';
+}
+[aria-controls="navigation"]:not([href="#navigation"]):after {
+    background: red;
+    color: white;
+    content:'Warning: When JavaScript is turned off, this should be a link and should go to the navigation landmark';
+}
+[role="tablist"] a:not([role="tab"]):after {
+    background: red;
+    color: white;
+    content:'Warning: All links inside a tablist should be defined as tabs, using the tab ARIA role';
+}
+[role="tabpanel"]:not([id]):after {
+    background: red;
+    color: white;
+    content:'Warning: Each tabpanel should be identified with an id attribute';
+}
+[role="tab"]:not([aria-controls]):after {
+    background: red;
+    color: white;
+    content:'Warning: Each tab should explicitly control a tabpanel using the aria-controls attribute';
+}
+[role="status"]:not([aria-live="polite"]), [role="alert"]:not([aria-live="assertive"]) {
+    content:'Warning: For better support, you should include a politeness setting for your live region role using the aria-live attribute';
+}
+[aria-live="polite"]:not([role="status"]), [aria-live="assertive"]:not([role="alert"]) {
+    content:'Warning: For better support, you should include a corresponding role for your aria-live politeness setting';
+}
